@@ -18,3 +18,18 @@ python3 main.py
 It writes the scene to `/output/entry.txt` (`OUTPUT_DIR` overrides the
 directory). Running it twice produces byte-identical output. The program uses
 only the Python standard library and needs no network access.
+
+## How it works
+
+Before writing anything, `main.py` checks the scene against the entry
+gate: 1 to 280 characters, a single line, no surrounding white space, and
+ending as one sentence. The file is then written atomically — to a
+temporary file in the same directory first, flushed to disk, and only then
+moved into place — so a reader never sees a half-written entry. After the
+write, the program reads the file back and confirms it holds exactly the
+scene, character for character.
+
+The scene itself is one small domestic moment: a grandmother who keeps her
+late husband's birth year as the Wi-Fi password and tells every visitor
+that he still lets people in. The joke is gentle, the affection is real,
+and the whole scene fits in a single breath.
